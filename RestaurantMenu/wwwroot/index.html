@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пиццерия У Матвея</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <div>
+                <h1 style="font-size:1.3rem;">Пиццерия У Матвея</h1>
+                <span style="font-size:0.8rem; color:var(--muted);">Электронное меню и приём заказов</span>
+            </div>
+            <div class="nav-tabs">
+                <button id="tabMenu" class="nav-btn active" onclick="switchView('menu')">Меню</button>
+                <button id="tabAdmin" class="nav-btn" onclick="switchView('admin')">Панель кухни</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="viewMenu" class="layout">
+        <section>
+            <div id="catTabs" class="filter-tabs"></div>
+            <div id="menuList" class="menu-grid">
+                <p style="color:var(--muted);">Загрузка позиций меню...</p>
+            </div>
+        </section>
+
+        <aside class="cart-box">
+            <h3>Текущий чек</h3>
+            <div id="cartItems" style="margin:14px 0;">
+                <p style="color:#888; font-size:0.9rem;">Корзина пуста</p>
+            </div>
+            <div style="font-weight:700; margin-bottom:10px;">Итого: <span id="cartSum">0</span> ₽</div>
+
+            <label style="font-size:0.8rem; color:var(--muted);">Номер стола:</label>
+            <input type="text" id="tblNum" inputmode="numeric" style="width:100%; padding:8px; margin:4px 0 10px; border:1px solid var(--border); border-radius:6px;">
+
+            <label style="font-size:0.8rem; color:var(--muted);">Имя клиента:</label>
+            <input type="text" id="guestName" style="width:100%; padding:8px; margin-bottom:12px; border:1px solid var(--border); border-radius:6px;">
+
+            <button id="btnSend" class="btn-order" disabled onclick="submitOrder()">Отправить заказ</button>
+            <p id="orderStatusMsg" style="margin-top:10px; font-size:0.85rem; text-align:center; font-weight:500; min-height:20px;"></p>
+        </aside>
+    </main>
+
+    <section id="viewAdmin" class="section-admin">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-title">Всего заказов</span>
+                <span class="stat-val" id="statTotalCount">0</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-title">В процессе готовки</span>
+                <span class="stat-val" id="statCookingCount" style="color:#b45309;">0</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-title">Выручка (выдано)</span>
+                <span class="stat-val" id="statRevenue" style="color:#15803d;">0 ₽</span>
+            </div>
+        </div>
+
+        <div class="admin-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                <div style="display:flex; gap:8px; align-items:center;">
+                    <h2 style="font-size:1.15rem; margin-right:8px;">Панель заказов кухни</h2>
+                    <button class="filter-chip active" onclick="setAdminFilter('Все', this)">Все</button>
+                    <button class="filter-chip" onclick="setAdminFilter('Готовится', this)">Готовятся</button>
+                    <button class="filter-chip" onclick="setAdminFilter('Выдан', this)">Выданные</button>
+                </div>
+                <button class="nav-btn" onclick="loadAdminOrders()">Обновить список</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Время</th>
+                        <th>Стол</th>
+                        <th>Гость</th>
+                        <th>Официант</th>
+                        <th>Состав</th>
+                        <th>Сумма</th>
+                        <th>Статус</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="adminTableBody">
+                    <tr>
+                        <td colspan="9" style="text-align:center; color:#64748b; padding:20px;">
+                            Нажмите «Обновить список» для загрузки актуальных заказов
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
