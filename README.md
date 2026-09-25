@@ -57,3 +57,9 @@
 1. Клонируйте репозиторий:
    ```bash
    git clone [https://github.com/bogatyr-cell/restaurant-ordermenu.git](https://github.com/bogatyr-cell/restaurant-ordermenu.git)
+   2. Перейдите в каталог проекта:
+   cd restaurant-ordermenu/RestaurantMenu
+3. Запустите веб-сервис:
+   dotnet run
+4. Откройте в браузере локальный адрес приложения:
+   https://localhost:7082/
